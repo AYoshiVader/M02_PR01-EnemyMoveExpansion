@@ -4899,7 +4899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343261bc54207ae4283839eb63502567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 783561000560763347, guid: f1faf5c08d6960e49bbff6530eedee7c, type: 3}
+  gameManager: {fileID: 1739348755199651186, guid: 1575c39d529467d4a9974e98b7eab292, type: 3}
 --- !u!135 &3265793504968121941
 SphereCollider:
   m_ObjectHideFlags: 0

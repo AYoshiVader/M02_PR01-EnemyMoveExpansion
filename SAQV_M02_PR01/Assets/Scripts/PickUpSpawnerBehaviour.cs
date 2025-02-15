@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class PickUpSpawnerBehaviour : MonoBehaviour
@@ -9,6 +11,7 @@ public class PickUpSpawnerBehaviour : MonoBehaviour
     public int spawnTimer = 0;
     public GameObject pickUp;
     public bool itemTaken = false;
+    public GameBehaviour gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -36,5 +39,6 @@ public class PickUpSpawnerBehaviour : MonoBehaviour
     void spawnPickUp()
     {
         GameObject newPickUp = Instantiate(pickUp, this.transform.position + this.transform.up, this.transform.rotation) as GameObject;
+        //newPickUp.GetComponentsInChildren(MonoScripts)[0].gameManager = gameManager;
     }
 }
