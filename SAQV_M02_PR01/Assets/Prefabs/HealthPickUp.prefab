@@ -4840,7 +4840,6 @@ GameObject:
   m_Component:
   - component: {fileID: 178607918984448960}
   - component: {fileID: 5880837572666853971}
-  - component: {fileID: 8735662690351614023}
   - component: {fileID: 3265793504968121941}
   m_Layer: 0
   m_Name: HealthSymbol
@@ -4887,19 +4886,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8735662690351614023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2762259063222129461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 343261bc54207ae4283839eb63502567, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 1739348755199651186, guid: 1575c39d529467d4a9974e98b7eab292, type: 3}
 --- !u!135 &3265793504968121941
 SphereCollider:
   m_ObjectHideFlags: 0

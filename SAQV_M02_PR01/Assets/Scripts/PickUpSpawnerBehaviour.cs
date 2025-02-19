@@ -10,7 +10,8 @@ public class PickUpSpawnerBehaviour : MonoBehaviour
     public int restockTimer = 100;
     public int spawnTimer = 0;
     public GameObject pickUp;
-    public bool itemTaken = false;
+    public GameObject instance;
+    public bool isSpawned = false;
     public GameBehaviour gameManager;
 
     // Start is called before the first frame update
@@ -22,10 +23,10 @@ public class PickUpSpawnerBehaviour : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (itemTaken)
+        if (isSpawned && instance == null)
         {
+            isSpawned = false;
             spawnTimer = restockTimer;
-            itemTaken = true;
         }
 
         spawnTimer--;
@@ -39,6 +40,7 @@ public class PickUpSpawnerBehaviour : MonoBehaviour
     void spawnPickUp()
     {
         GameObject newPickUp = Instantiate(pickUp, this.transform.position + this.transform.up, this.transform.rotation) as GameObject;
-        //newPickUp.GetComponentsInChildren(MonoScripts)[0].gameManager = gameManager;
+        instance = newPickUp;
+        isSpawned = true;
     }
 }

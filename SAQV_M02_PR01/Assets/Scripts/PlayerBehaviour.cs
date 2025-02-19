@@ -91,5 +91,11 @@ public class PlayerBehaviour : MonoBehaviour
             UnityEngine.Debug.Log("Ouch");
             gameManager.HP -= 1;
         }
+        if(collision.gameObject.name == "HealthSymbol" && gameManager.HP < gameManager.MaxHP)
+        {
+            Destroy(collision.transform.parent.gameObject);
+            UnityEngine.Debug.Log("Healing Time!");
+            gameManager.HP += 1;
+        }
     }
 }

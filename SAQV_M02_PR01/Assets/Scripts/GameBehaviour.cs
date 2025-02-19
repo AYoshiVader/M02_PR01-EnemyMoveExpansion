@@ -6,27 +6,19 @@ using UnityEngine.SceneManagement;
 public class GameBehaviour : MonoBehaviour
 {
     public string labelText = "Collect all 4 Energy and win your freedom!";
-    public int maxEnergy = 4;
+    public int targetEnemies = 6;
     public bool showWinScreen = false;
+    public bool showLoseScreen = false;
 
-    private int _energyGathered = 0;
+    private int _energyStored = 0;
     public int Energy
     {
-        get { return _energyGathered; }
+        get { return _energyStored; }
 
         set
         {
-            _energyGathered = value;
-            if (_energyGathered >= maxEnergy)
-            {
-                labelText = "You've found all the Energy!";
-                doWin();
-            }
-            else
-            {
-                labelText = "Item found, only " + (maxEnergy - _energyGathered) + " more to go!";
-            }
-            UnityEngine.Debug.LogFormat("Energy: {0}", _energyGathered);
+            _energyStored = value;
+            UnityEngine.Debug.LogFormat("Energy: {0}", _energyStored);
         }
     }
 
@@ -48,6 +40,10 @@ public class GameBehaviour : MonoBehaviour
         set
         {
             _playerHP = value;
+            if (value <= 0)
+            {
+                endGame(false);
+            }
             UnityEngine.Debug.LogFormat("Lives: {0}", _playerHP);
         }
     }
@@ -63,9 +59,34 @@ public class GameBehaviour : MonoBehaviour
         }
     }
 
-    void doWin()
+    private int _targetsEliminated = 0;
+    public int TargetsEliminated
     {
-        showWinScreen = true;
+        get { return _targetsEliminated; }
+        set
+        {
+            _targetsEliminated = value;
+            if (_targetsEliminated >= targetEnemies)
+            {
+                labelText = "You've cleared the Area!";
+                endGame(true);
+            }
+            else
+            {
+                labelText = "Enemy taken down, only " + (targetEnemies - _targetsEliminated) + " more to go!";
+            }
+        }
+    }
+
+    void endGame(bool winLose)
+    {
+        if (winLose)
+        {
+            showWinScreen = true;
+        } else
+        {
+            showLoseScreen = true;
+        }
         Time.timeScale = 0f;
     }
 
@@ -73,16 +94,27 @@ public class GameBehaviour : MonoBehaviour
     {
         GUI.Box(new Rect(20, 20, 150, 25), "Player Health:" + _playerHP + "/" + _playerMaxHP);
         GUI.Box(new Rect(20, 50, 150, 25), "Shield Charges:" + _playerShield);
-        GUI.Box(new Rect(20, 80, 150, 25), "Energy Collected: " + _energyGathered);
+        GUI.Box(new Rect(20, 80, 150, 25), "Energy Collected: " + _energyStored);
         GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height - 50, 300, 50), labelText);
         if (showWinScreen)
         {
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "YOU WON!"))
             {
-                SceneManager.LoadScene(0);
-                Time.timeScale = 1.0f;
+                ResetMap();
+            }
+        }
+        if (showLoseScreen)
+        {
+            if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "YOU LOSE!"))
+            {
+                ResetMap();
             }
         }
     }
 
+    private static void ResetMap()
+    {
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1.0f;
+    }
 }
