@@ -10,7 +10,7 @@ public class PickUpSpawnerBehaviour : MonoBehaviour
     public int restockTimer = 100;
     public int spawnTimer = 0;
     public GameObject pickUp;
-    public GameObject instance;
+    public GameObject instance = null;
     public bool isSpawned = false;
     public GameBehaviour gameManager;
 
